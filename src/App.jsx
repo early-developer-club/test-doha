@@ -1,6 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { CalendarDays, Clock, MapPin, Utensils, Smartphone, Send, Info, Building2, ArrowRight } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { CalendarDays, Clock, Utensils, Smartphone, Send, Info, Building2, ArrowRight } from "lucide-react";
 
 const cn = (...a) => a.filter(Boolean).join(" ");
 const Card = ({ className, children }) => (
@@ -74,7 +73,6 @@ export default function App() {
       });
       if (!res.ok) throw new Error("Bad response");
       alert("제출 완료! (Google 시트로 전송되었습니다)");
-      localStorage.setItem("leadership_lunch", JSON.stringify(payload));
       setForm({ name: "", menu: "" });
     } catch (err) {
       console.error(err);
@@ -96,14 +94,9 @@ export default function App() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-900">
       <header className="max-w-5xl mx-auto px-6 pt-10 pb-6">
         <div className="flex flex-col gap-6">
-          <motion.h1
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-4xl font-extrabold tracking-tight"
-          >
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
             {meta.title}
-          </motion.h1>
+          </h1>
           <div className="flex flex-wrap items-center gap-3">
             <Badge><CalendarDays className="w-3.5 h-3.5 mr-1" /> {meta.dateLabel}</Badge>
             <Badge><Clock className="w-3.5 h-3.5 mr-1" /> {meta.durationLabel}</Badge>
@@ -228,11 +221,11 @@ export default function App() {
               <div className="font-semibold">문의</div>
               <div>인사유닛 Sandy : 02-829-3522</div>
             </div>
-            <a href="#" onClick={(e)=>{e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' });}}>
+            <button onClick={()=>window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <Button className="bg-white text-gray-900 border border-gray-300 hover:bg-gray-50">
-                맨 위로 <ArrowRight className="w-4 h-4 rotate-180"/>
+                맨 위로 <ArrowRight className="w-4 h-4 -rotate-90"/>
               </Button>
-            </a>
+            </button>
           </CardContent>
         </Card>
       </footer>
